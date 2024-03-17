@@ -1,4 +1,6 @@
 import type { Config } from "tailwindcss";
+import plugin from "tailwindcss/plugin";
+import tailwindcssAnimate from "tailwindcss-animate";
 
 const config: Config = {
   content: [
@@ -8,13 +10,181 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      container: {
+        center: true,
+      },
+
+      screens: {
+        xs: "475px",
       },
     },
   },
-  plugins: [],
+  plugins: [
+    tailwindcssAnimate,
+    plugin(function ({ addUtilities, matchUtilities }) {
+      addUtilities({
+        ".radial-circular": {
+          "--tw-radial-gradient-shape": "circle",
+        },
+        ".radial-closest-side": {
+          "--tw-radial-gradient-size": "closest-side",
+        },
+        ".radial-farthest-side": {
+          "--tw-radial-gradient-size": "farthest-side",
+        },
+        ".radial-closest-corner": {
+          "--tw-radial-gradient-size": "closest-corner",
+        },
+        ".radial-farthest-corner": {
+          "--tw-radial-gradient-size": "farthest-corner",
+        },
+      });
+
+      matchUtilities(
+        {
+          "bg-radial-gradient": (value) => ({
+            backgroundImage: `radial-gradient(var(--tw-radial-gradient-shape) var(--tw-radial-gradient-size) at ${value}, var(--tw-gradient-stops))`,
+          }),
+        },
+        {
+          values: {
+            DEFAULT: "center",
+            t: "top",
+            tl: "top left",
+            tr: "top right",
+            r: "right",
+            l: "left",
+            bl: "bottom left",
+            b: "bottom",
+            br: "bottom right",
+          },
+        },
+      );
+    }),
+
+    plugin(function ({ matchUtilities, theme }) {
+      matchUtilities(
+        {
+          "mask-gradient-to": (value) => ({
+            "--tw-mask-gradient-stops":
+              "rgb(0 0 0 / var(--tw-mask-from-opacity)) var(--tw-mask-from-position), rgb(0 0 0 / var(--tw-mask-to-opacity)) var(--tw-mask-to-position)",
+            maskImage: `linear-gradient(to ${value}, var(--tw-mask-gradient-stops))`,
+          }),
+        },
+        {
+          values: {
+            tl: "top left",
+            t: "top",
+            tr: "top right",
+            l: "left",
+            DEFAULT: "",
+            r: "right",
+            bl: "bottom left",
+            b: "bottom",
+            br: "bottom right",
+          },
+        },
+      );
+
+      matchUtilities(
+        {
+          "mask-radial-gradient": (value) => ({
+            "--tw-mask-gradient-stops":
+              "rgb(0 0 0 / var(--tw-mask-from-opacity)) var(--tw-mask-from-position), rgb(0 0 0 / var(--tw-mask-to-opacity)) var(--tw-mask-to-position)",
+            maskImage: `radial-gradient(var(--tw-radial-gradient-shape) var(--tw-radial-gradient-size) at ${value}, var(--tw-mask-gradient-stops))`,
+          }),
+        },
+        {
+          values: {
+            DEFAULT: "center",
+            t: "top",
+            tl: "top left",
+            tr: "top right",
+            r: "right",
+            l: "left",
+            bl: "bottom left",
+            b: "bottom",
+            br: "bottom right",
+          },
+        },
+      );
+
+      matchUtilities(
+        {
+          "mask-from": (value) => ({
+            "--tw-mask-from-opacity": value,
+          }),
+
+          "mask-to": (value) => ({
+            "--tw-mask-to-opacity": value,
+          }),
+        },
+        {
+          values: theme("opacity"),
+        },
+      );
+
+      matchUtilities(
+        {
+          "mask-from": (value) => ({
+            "--tw-mask-from-position": value,
+          }),
+
+          "mask-to": (value) => ({
+            "--tw-mask-to-position": value,
+          }),
+        },
+        {
+          values: {
+            "5%": "5%",
+            "10%": "10%",
+            "15%": "15%",
+            "20%": "20%",
+            "25%": "25%",
+            "30%": "30%",
+            "35%": "35%",
+            "40%": "40%",
+            "45%": "45%",
+            "50%": "50%",
+            "55%": "55%",
+            "60%": "60%",
+            "65%": "65%",
+            "70%": "70%",
+            "75%": "75%",
+            "80%": "80%",
+            "85%": "85%",
+            "90%": "90%",
+            "95%": "95%",
+          },
+        },
+      );
+    }),
+
+    plugin(function ({ addUtilities, matchUtilities }) {
+      addUtilities({
+        ".mask-cover": {
+          "mask-size": "cover",
+        },
+        ".mask-contain": {
+          "mask-size": "contain",
+        },
+        ".mask-luminance": {
+          "mask-type": "luminance",
+        },
+        ".mask-center": {
+          "mask-position": "center center",
+        },
+        ".mask-no-repeat": {
+          "mask-repeat": "no-repeat",
+        },
+      });
+
+      matchUtilities({
+        mask: (value) => ({
+          maskImage: value,
+        }),
+      });
+    }),
+  ],
 };
 export default config;
