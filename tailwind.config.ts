@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
 import plugin from "tailwindcss/plugin";
 import tailwindcssAnimate from "tailwindcss-animate";
+import tailwind3Dtransforms from "@xpd/tailwind-3dtransforms";
 
 const config: Config = {
   content: [
@@ -20,6 +21,7 @@ const config: Config = {
     },
   },
   plugins: [
+    tailwind3Dtransforms,
     tailwindcssAnimate,
     plugin(function ({ addUtilities, matchUtilities }) {
       addUtilities({
@@ -187,4 +189,5 @@ const config: Config = {
     }),
   ],
 };
+
 export default config;
