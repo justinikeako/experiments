@@ -7,7 +7,7 @@ export default function Page() {
       >
         <input type="checkbox" id="switch" className="peer hidden" />
 
-        <div className="ease-spring spring-standard size-8 p-0.5 transition-transform group-has-[:checked]:translate-x-4">
+        <div className="size-8 p-0.5 transition-transform ease-spring spring-standard group-has-[:checked]:translate-x-4">
           <div className="size-full rounded-full bg-white shadow-sm ring-1 ring-black/10"></div>
         </div>
       </label>
