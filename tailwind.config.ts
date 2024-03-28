@@ -2,6 +2,7 @@ import type { Config } from "tailwindcss";
 import plugin from "tailwindcss/plugin";
 import tailwindcssAnimate from "tailwindcss-animate";
 import tailwind3Dtransforms from "@xpd/tailwind-3dtransforms";
+import { spring } from "popmotion";
 
 const config: Config = {
   content: [
@@ -23,24 +24,30 @@ const config: Config = {
   plugins: [
     tailwind3Dtransforms,
     tailwindcssAnimate,
+
+    // Radial gradient utilities
     plugin(function ({ addUtilities, matchUtilities }) {
       addUtilities({
         ".radial-circular": {
           "--tw-radial-gradient-shape": "circle",
         },
-        ".radial-closest-side": {
-          "--tw-radial-gradient-size": "closest-side",
-        },
-        ".radial-farthest-side": {
-          "--tw-radial-gradient-size": "farthest-side",
-        },
-        ".radial-closest-corner": {
-          "--tw-radial-gradient-size": "closest-corner",
-        },
-        ".radial-farthest-corner": {
-          "--tw-radial-gradient-size": "farthest-corner",
-        },
       });
+
+      matchUtilities(
+        {
+          radial: (value) => ({
+            "--tw-radial-gradient-size": value,
+          }),
+        },
+        {
+          values: {
+            "closest-side": "closest-side",
+            "farthest-side": "farthest-side",
+            "closest-corner": "closest-corner",
+            "farthest-corner": "farthest-corner",
+          },
+        },
+      );
 
       matchUtilities(
         {
@@ -64,6 +71,7 @@ const config: Config = {
       );
     }),
 
+    // Mask gradient utilities
     plugin(function ({ matchUtilities, theme }) {
       matchUtilities(
         {
@@ -162,6 +170,7 @@ const config: Config = {
       );
     }),
 
+    // Mask image utilities
     plugin(function ({ addUtilities, matchUtilities }) {
       addUtilities({
         ".mask-cover": {
@@ -186,6 +195,60 @@ const config: Config = {
           maskImage: value,
         }),
       });
+    }),
+
+    plugin(function ({ addUtilities, matchUtilities }) {
+      addUtilities({
+        ".ease-spring": {
+          transitionTimingFunction: "var(--tw-spring-function)",
+          transitionDuration: "var(--tw-spring-duration)",
+        },
+      });
+      matchUtilities(
+        {
+          spring: (values) => {
+            let [duration, bounce] = values
+              .split("/")
+              .map((value) => parseFloat(value));
+
+            const animation = spring({
+              from: 0,
+              to: 1,
+              duration: duration,
+              bounce,
+            });
+
+            // Define the number of steps for the animation
+            const numSteps = 20;
+
+            // Array to store the positions of the points
+            const points = [];
+
+            // Calculate the position of each point for each step of the animation
+            for (let i = 0; i <= numSteps; i++) {
+              // Resolve the animation at the current timestamp
+              const { value, done } = animation.next((i / numSteps) * duration);
+
+              // Store the resolved value (position) in the points array
+              points.push(value);
+
+              if (done) break;
+            }
+
+            return {
+              "--tw-spring-function": `linear(${points.join(",")})`,
+              "--tw-spring-duration": duration + "ms",
+            };
+          },
+        },
+        {
+          values: {
+            fast: "300/0.2",
+            standard: "500/0.3",
+            slow: "1000/0.4",
+          },
+        },
+      );
     }),
   ],
 };
