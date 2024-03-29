@@ -12,6 +12,15 @@
   --tw-mask-to-position: 100%;
 }
 
+/* Only iOS supports this touch-callout so we can use it for Safari-specific styling */
+@supports (-webkit-touch-callout: none) {
+  /* Fallback since Safari doesn't support the linear() timing function */
+  .ease-spring {
+    transition-timing-function: ease-in-out !important;
+    transition-duration: calc(var(--tw-spring-duration) * 0.75);
+  }
+}
+
 @keyframes doNothing {
   from {
     opacity: 1;

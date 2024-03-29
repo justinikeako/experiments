@@ -204,6 +204,7 @@ const config: Config = {
           transitionDuration: "var(--tw-spring-duration)",
         },
       });
+
       matchUtilities(
         {
           spring: (values) => {
