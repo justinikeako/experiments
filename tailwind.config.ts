@@ -22,55 +22,7 @@ const config: Config = {
     },
   },
   plugins: [
-    tailwind3Dtransforms,
     tailwindcssAnimate,
-
-    // Radial gradient utilities
-    plugin(function ({ addUtilities, matchUtilities }) {
-      addUtilities({
-        ".radial-circular": {
-          "--tw-radial-gradient-shape": "circle",
-        },
-      });
-
-      matchUtilities(
-        {
-          radial: (value) => ({
-            "--tw-radial-gradient-size": value,
-          }),
-        },
-        {
-          values: {
-            "closest-side": "closest-side",
-            "farthest-side": "farthest-side",
-            "closest-corner": "closest-corner",
-            "farthest-corner": "farthest-corner",
-          },
-        },
-      );
-
-      matchUtilities(
-        {
-          "bg-radial-gradient": (value) => ({
-            backgroundImage: `radial-gradient(var(--tw-radial-gradient-shape) var(--tw-radial-gradient-size) at ${value}, var(--tw-gradient-stops))`,
-          }),
-        },
-        {
-          values: {
-            DEFAULT: "center",
-            t: "top",
-            tl: "top left",
-            tr: "top right",
-            r: "right",
-            l: "left",
-            bl: "bottom left",
-            b: "bottom",
-            br: "bottom right",
-          },
-        },
-      );
-    }),
-
     // Mask gradient utilities
     plugin(function ({ matchUtilities, theme }) {
       matchUtilities(
