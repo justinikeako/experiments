@@ -12,22 +12,23 @@
   margin-inline: auto;
 }
 
-:root {
-  --tw-radial-gradient-shape: ;
-  --tw-radial-gradient-size: farthest-corner;
+@utility stepper-hidden {
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 
-  --tw-mask-from-opacity: 1;
-  --tw-mask-to-opacity: 0;
-  --tw-mask-from-position: 0%;
-  --tw-mask-to-position: 100%;
+  &[type="number"] {
+    -moz-appearance: textfield;
+  }
 }
 
-/* Only iOS supports this touch-callout so we can use it for Safari-specific styling */
-@supports (-webkit-touch-callout: none) {
-  /* Fallback since Safari doesn't support the linear() timing function */
-  .ease-spring {
-    transition-timing-function: ease-in-out !important;
-    transition-duration: calc(var(--tw-spring-duration) * 0.75);
+@utility scrollbar-hidden {
+  scrollbar-width: 0;
+
+  &::-webkit-scrollbar {
+    display: none;
   }
 }
 
@@ -37,22 +38,5 @@
   }
   to {
     opacity: 1;
-  }
-}
-
-@keyframes scaleIn {
-  from {
-    transform: scaleY(0);
-  }
-  to {
-    transform: scaleY(1);
-  }
-}
-@keyframes scaleOut {
-  from {
-    transform: scaleY(1);
-  }
-  to {
-    transform: scaleY(0);
   }
 }
