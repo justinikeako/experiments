@@ -1,6 +1,16 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@plugin "tailwindcss-motion";
+@plugin "./spring-plugin";
+
+@theme {
+  --breakpoint-xs: 475px;
+  --font-sans: "Inter", sans-serif;
+}
+
+@utility container {
+  margin-inline: auto;
+}
 
 :root {
   --tw-radial-gradient-shape: ;

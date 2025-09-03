@@ -1,3 +1,3 @@
-import { twMerge } from "tailwind-merge";
-
-export const cn = twMerge;
+export function cn(...classes: (string | boolean | null | undefined)[]) {
+  return classes.filter(Boolean).join(" ");
+}

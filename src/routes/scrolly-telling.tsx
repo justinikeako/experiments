@@ -1,8 +1,44 @@
-"use client";
-
+import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { motion, useTransform, useScroll } from "framer-motion";
+import { motion, useTransform, useScroll } from "motion/react";
 import { Slot } from "@radix-ui/react-slot";
+
+export const Route = createFileRoute("/scrolly-telling")({
+  component: Page,
+});
+
+function Page() {
+  return (
+    <main>
+      <section className="h-screen overflow-hidden">
+        <ScrollyElement scrollyId="box2">
+          <div className="absolute h-32 w-64 origin-top-left bg-green-800" />
+        </ScrollyElement>
+        <ScrollyElement scrollyId="box">
+          <div className="absolute size-full origin-top-left bg-pink-200" />
+        </ScrollyElement>
+      </section>
+      <section className="relative h-screen">
+        <div
+          className="grid h-full w-1/2 place-items-center bg-green-800"
+          data-scrolly-id="box2"
+        >
+          <div className="size-32 bg-pink-200" data-scrolly-id="box"></div>
+        </div>
+      </section>
+      <section className="relative grid h-screen place-items-center">
+        <div
+          className="absolute right-0 size-32 bg-green-800"
+          data-scrolly-id="box2"
+        />
+        <div
+          className="absolute h-16 w-full bg-pink-200"
+          data-scrolly-id="box"
+        />
+      </section>
+    </main>
+  );
+}
 
 /**
  * TODO
@@ -12,7 +48,7 @@ import { Slot } from "@radix-ui/react-slot";
  * Add rotation support (remove dependence on transform origin top-left)
  */
 
-const MotionSlot = motion(Slot);
+const MotionSlot = motion.create(Slot);
 
 type Transform = { x: number; y: number; scaleX: number; scaleY: number };
 const defaultTransform = { x: 0, y: 0, scaleX: 1, scaleY: 1 };

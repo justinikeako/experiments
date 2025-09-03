@@ -1,10 +1,13 @@
-"use client";
-
 import { cn } from "#/lib/utils";
 import * as Dialog from "@radix-ui/react-dialog";
+import { createFileRoute } from "@tanstack/react-router";
 import { RemoveScroll } from "react-remove-scroll";
 
-export default function Page() {
+export const Route = createFileRoute("/menu")({
+  component: Page,
+});
+
+function Page() {
   return (
     <>
       <Dialog.Root>
@@ -36,8 +39,8 @@ export default function Page() {
               "group fixed inset-0 z-50 grid grid-cols-5 grid-rows-[4rem_1fr] text-white data-[state=closed]:[animation:doNothing_500ms]",
             )}
           >
-            <div className="absolute -z-10 h-full w-1/5 origin-top bg-amber-600 [animation:scaleIn_500ms_ease-out] group-data-[state=closed]:[animation:scaleOut_500ms_ease-out]" />
-            <div className="absolute right-0 -z-10 h-full w-4/5 origin-bottom bg-amber-500 [animation:scaleIn_500ms_ease-out] group-data-[state=closed]:[animation:scaleOut_500ms_ease-out]" />
+            <div className="motion-scale-y-in-0 group-data-[state=closed]:motion-scale-y-out-0 absolute -z-10 h-full w-1/5 origin-top bg-amber-600" />
+            <div className="motion-scale-y-in-0 group-data-[state=closed]:motion-scale-y-out-0 absolute right-0 -z-10 h-full w-4/5 origin-bottom bg-amber-500" />
 
             <div className="col-span-5">
               <div className="flex h-full items-center 2xl:container">
@@ -45,7 +48,7 @@ export default function Page() {
                 <div className="flex flex-1 items-center gap-8 px-4">
                   <Dialog.Close
                     id="close-menu"
-                    className="group relative flex size-12 items-center justify-center rounded-full transition-colors duration-500 animate-in fade-in fill-mode-forwards hover:bg-amber-600 group-data-[state=closed]:animate-out group-data-[state=closed]:fade-out"
+                    className="group motion-opacity-in group-data-[state=closed]:motion-opacity-out motion-duration-500 relative flex size-12 items-center justify-center rounded-full transition-colors hover:bg-amber-600"
                   >
                     <span className="sr-only">close</span>
                     <div className="absolute h-px w-8 -translate-y-1 bg-current transition-transform group-data-[state=open]:translate-y-0 group-data-[state=open]:rotate-45" />
@@ -54,26 +57,26 @@ export default function Page() {
                   <label
                     htmlFor="close-menu"
                     aria-hidden
-                    className="animate-in fade-in fill-mode-both group-data-[state=open]:delay-300 group-data-[state=closed]:animate-out group-data-[state=closed]:fade-out"
+                    className="motion-opacity-in group-data-[state=closed]:motion-opacity-out group-data-[state=open]:motion-delay-300"
                   >
                     Menu
                   </label>
                 </div>
                 <div className="pr-16">
-                  <div className="flex h-10 items-center rounded-full bg-white px-4 font-medium text-amber-950 animate-in fade-in fill-mode-both group-data-[state=open]:delay-300 group-data-[state=closed]:animate-out group-data-[state=closed]:fade-out">
+                  <div className="motion-opacity-in group-data-[state=closed]:motion-opacity-out group-data-[state=open]:motion-delay-300 flex h-10 items-center rounded-full bg-white px-4 font-medium text-amber-950">
                     Hematogenix Portals
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="col-span-1 flex items-end p-16 duration-100 fill-mode-both group-data-[state=closed]:animate-out group-data-[state=closed]:fade-out">
-              <p className="text-amber-300 delay-200 duration-500 animate-in fade-in fill-mode-both">
+            <div className="group-data-[state=closed]:motion-opacity-out motion-duration-100 col-span-1 flex items-end p-16">
+              <p className="motion-opacity-in motion-delay-200 motion-duration-500 text-amber-300">
                 Demo by NP
               </p>
             </div>
-            <div className="col-span-4 flex flex-1 items-end justify-between pb-16 pl-24 pr-16 duration-100 fill-mode-both group-data-[state=closed]:animate-out group-data-[state=closed]:fade-out">
-              <ul className="space-y-2 delay-200 duration-500 animate-in fade-in fill-mode-both">
+            <div className="group-data-[state=closed]:motion-opacity-out motion-duration-100 col-span-4 flex flex-1 items-end justify-between pr-16 pb-16 pl-24">
+              <ul className="motion-opacity-in motion-delay-200 motion-duration-500 space-y-2">
                 <li className="text-7xl tracking-tighter">Home</li>
                 <li className="text-7xl tracking-tighter">Expertise</li>
                 <li className="text-7xl tracking-tighter">Services</li>
@@ -83,12 +86,12 @@ export default function Page() {
               </ul>
 
               <div className="space-y-8">
-                <ul className="delay-300 duration-500 animate-in fade-in fill-mode-both">
+                <ul className="motion-opacity-in motion-delay-300 motion-duration-500">
                   <li className="text-4xl">Careers</li>
                   <li className="text-4xl">Resources</li>
                   <li className="text-4xl">Contacts</li>
                 </ul>
-                <ul className="duration-500 animate-in fade-in fill-mode-both [animation-delay:400ms]">
+                <ul className="motion-opacity-in motion-delay-400 motion-duration-500">
                   <li className="">Terms of use</li>
                   <li className="">Privacy Policy & Cookies</li>
                   <li className="">HIPAA Notice</li>
@@ -101,8 +104,8 @@ export default function Page() {
 
       <main className="pb-16">
         <section className="flex 2xl:container">
-          <div className="w-1/5 pl-16 pt-48">
-            <ul className=" space-y-2 border-l border-gray-200">
+          <div className="w-1/5 pt-48 pl-16">
+            <ul className="space-y-2 border-l border-gray-200">
               <li className="-ml-px border-l-2 border-transparent px-4">
                 Intro
               </li>
@@ -137,8 +140,8 @@ export default function Page() {
               </p>
             </div>
             <div className="flex gap-8">
-              <div className="aspect-[4/5] min-w-0 flex-1 bg-gray-200 p-12"></div>
-              <div className="aspect-[4/5] min-w-0 flex-1 bg-amber-200 p-12">
+              <div className="aspect-4/5 min-w-0 flex-1 bg-gray-200 p-12"></div>
+              <div className="aspect-4/5 min-w-0 flex-1 bg-amber-200 p-12">
                 <p className="min-w-0 text-5xl font-semibold tracking-tight text-green-900">
                   At a Glance
                 </p>
