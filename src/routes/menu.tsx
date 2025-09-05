@@ -36,15 +36,17 @@ function Page() {
           <Dialog.Content
             className={cn(
               RemoveScroll.classNames.fullWidth,
-              "group fixed inset-0 z-50 grid grid-cols-5 grid-rows-[4rem_1fr] text-white data-[state=closed]:[animation:doNothing_500ms]",
+              "group data-[state=closed]:motion-opacity-out-100 motion-ease-spring-smooth fixed inset-0 z-50 grid grid-cols-5 grid-rows-[4rem_1fr] text-white",
             )}
           >
-            <div className="motion-scale-y-in-0 group-data-[state=closed]:motion-scale-y-out-0 absolute -z-10 h-full w-1/5 origin-top bg-amber-600" />
-            <div className="motion-scale-y-in-0 group-data-[state=closed]:motion-scale-y-out-0 absolute right-0 -z-10 h-full w-4/5 origin-bottom bg-amber-500" />
+            <div className="motion-scale-y-in-0 group-data-[state=closed]:motion-scale-y-out-0 motion-ease-spring-smooth absolute -z-10 h-full w-1/5 origin-top bg-amber-600" />
+            <div className="motion-scale-y-in-0 group-data-[state=closed]:motion-scale-y-out-0 motion-ease-spring-smooth absolute right-0 -z-10 h-full w-4/5 origin-bottom bg-amber-500" />
 
             <div className="col-span-5">
               <div className="flex h-full items-center 2xl:container">
-                <div className="w-1/5 pl-16 text-xl">Logo</div>
+                <div className="motion-opacity-in group-data-[state=closed]:motion-opacity-out motion-duration-500 group-data-[state=closed]:motion-delay-300 w-1/5 pl-16 text-xl">
+                  Logo
+                </div>
                 <div className="flex flex-1 items-center gap-8 px-4">
                   <Dialog.Close
                     id="close-menu"
@@ -63,7 +65,7 @@ function Page() {
                   </label>
                 </div>
                 <div className="pr-16">
-                  <div className="motion-opacity-in group-data-[state=closed]:motion-opacity-out group-data-[state=open]:motion-delay-300 flex h-10 items-center rounded-full bg-white px-4 font-medium text-amber-950">
+                  <div className="motion-opacity-in group-data-[state=closed]:motion-opacity-out group-data-[state=open]:motion-delay-500 motion-duration-300 flex h-10 items-center rounded-full bg-white px-4 font-medium text-amber-950">
                     Hematogenix Portals
                   </div>
                 </div>
@@ -75,7 +77,7 @@ function Page() {
                 Demo by NP
               </p>
             </div>
-            <div className="group-data-[state=closed]:motion-opacity-out motion-duration-100 col-span-4 flex flex-1 items-end justify-between pr-16 pb-16 pl-24">
+            <div className="group-data-[state=closed]:motion-opacity-out motion-duration-250 col-span-4 flex flex-1 items-end justify-between pr-16 pb-16 pl-24">
               <ul className="motion-opacity-in motion-delay-200 motion-duration-500 space-y-2">
                 <li className="text-7xl tracking-tighter">Home</li>
                 <li className="text-7xl tracking-tighter">Expertise</li>

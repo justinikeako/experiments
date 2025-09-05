@@ -10,9 +10,11 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TargetPracticeRouteImport } from './routes/target-practice'
+import { Route as SquirclesRouteImport } from './routes/squircles'
 import { Route as SpringRouteImport } from './routes/spring'
 import { Route as ScrollyTellingRouteImport } from './routes/scrolly-telling'
 import { Route as MenuRouteImport } from './routes/menu'
+import { Route as IosTimeRouteImport } from './routes/ios-time'
 import { Route as ChromaticAbberationIThinkRouteImport } from './routes/chromatic-abberation-i-think'
 import { Route as BlobRouteImport } from './routes/blob'
 import { Route as BiggestRouteImport } from './routes/biggest'
@@ -21,6 +23,11 @@ import { Route as IndexRouteImport } from './routes/index'
 const TargetPracticeRoute = TargetPracticeRouteImport.update({
   id: '/target-practice',
   path: '/target-practice',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SquirclesRoute = SquirclesRouteImport.update({
+  id: '/squircles',
+  path: '/squircles',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SpringRoute = SpringRouteImport.update({
@@ -36,6 +43,11 @@ const ScrollyTellingRoute = ScrollyTellingRouteImport.update({
 const MenuRoute = MenuRouteImport.update({
   id: '/menu',
   path: '/menu',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IosTimeRoute = IosTimeRouteImport.update({
+  id: '/ios-time',
+  path: '/ios-time',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ChromaticAbberationIThinkRoute =
@@ -65,9 +77,11 @@ export interface FileRoutesByFullPath {
   '/biggest': typeof BiggestRoute
   '/blob': typeof BlobRoute
   '/chromatic-abberation-i-think': typeof ChromaticAbberationIThinkRoute
+  '/ios-time': typeof IosTimeRoute
   '/menu': typeof MenuRoute
   '/scrolly-telling': typeof ScrollyTellingRoute
   '/spring': typeof SpringRoute
+  '/squircles': typeof SquirclesRoute
   '/target-practice': typeof TargetPracticeRoute
 }
 export interface FileRoutesByTo {
@@ -75,9 +89,11 @@ export interface FileRoutesByTo {
   '/biggest': typeof BiggestRoute
   '/blob': typeof BlobRoute
   '/chromatic-abberation-i-think': typeof ChromaticAbberationIThinkRoute
+  '/ios-time': typeof IosTimeRoute
   '/menu': typeof MenuRoute
   '/scrolly-telling': typeof ScrollyTellingRoute
   '/spring': typeof SpringRoute
+  '/squircles': typeof SquirclesRoute
   '/target-practice': typeof TargetPracticeRoute
 }
 export interface FileRoutesById {
@@ -86,9 +102,11 @@ export interface FileRoutesById {
   '/biggest': typeof BiggestRoute
   '/blob': typeof BlobRoute
   '/chromatic-abberation-i-think': typeof ChromaticAbberationIThinkRoute
+  '/ios-time': typeof IosTimeRoute
   '/menu': typeof MenuRoute
   '/scrolly-telling': typeof ScrollyTellingRoute
   '/spring': typeof SpringRoute
+  '/squircles': typeof SquirclesRoute
   '/target-practice': typeof TargetPracticeRoute
 }
 export interface FileRouteTypes {
@@ -98,9 +116,11 @@ export interface FileRouteTypes {
     | '/biggest'
     | '/blob'
     | '/chromatic-abberation-i-think'
+    | '/ios-time'
     | '/menu'
     | '/scrolly-telling'
     | '/spring'
+    | '/squircles'
     | '/target-practice'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -108,9 +128,11 @@ export interface FileRouteTypes {
     | '/biggest'
     | '/blob'
     | '/chromatic-abberation-i-think'
+    | '/ios-time'
     | '/menu'
     | '/scrolly-telling'
     | '/spring'
+    | '/squircles'
     | '/target-practice'
   id:
     | '__root__'
@@ -118,9 +140,11 @@ export interface FileRouteTypes {
     | '/biggest'
     | '/blob'
     | '/chromatic-abberation-i-think'
+    | '/ios-time'
     | '/menu'
     | '/scrolly-telling'
     | '/spring'
+    | '/squircles'
     | '/target-practice'
   fileRoutesById: FileRoutesById
 }
@@ -129,9 +153,11 @@ export interface RootRouteChildren {
   BiggestRoute: typeof BiggestRoute
   BlobRoute: typeof BlobRoute
   ChromaticAbberationIThinkRoute: typeof ChromaticAbberationIThinkRoute
+  IosTimeRoute: typeof IosTimeRoute
   MenuRoute: typeof MenuRoute
   ScrollyTellingRoute: typeof ScrollyTellingRoute
   SpringRoute: typeof SpringRoute
+  SquirclesRoute: typeof SquirclesRoute
   TargetPracticeRoute: typeof TargetPracticeRoute
 }
 
@@ -142,6 +168,13 @@ declare module '@tanstack/react-router' {
       path: '/target-practice'
       fullPath: '/target-practice'
       preLoaderRoute: typeof TargetPracticeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/squircles': {
+      id: '/squircles'
+      path: '/squircles'
+      fullPath: '/squircles'
+      preLoaderRoute: typeof SquirclesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/spring': {
@@ -163,6 +196,13 @@ declare module '@tanstack/react-router' {
       path: '/menu'
       fullPath: '/menu'
       preLoaderRoute: typeof MenuRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ios-time': {
+      id: '/ios-time'
+      path: '/ios-time'
+      fullPath: '/ios-time'
+      preLoaderRoute: typeof IosTimeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/chromatic-abberation-i-think': {
@@ -201,9 +241,11 @@ const rootRouteChildren: RootRouteChildren = {
   BiggestRoute: BiggestRoute,
   BlobRoute: BlobRoute,
   ChromaticAbberationIThinkRoute: ChromaticAbberationIThinkRoute,
+  IosTimeRoute: IosTimeRoute,
   MenuRoute: MenuRoute,
   ScrollyTellingRoute: ScrollyTellingRoute,
   SpringRoute: SpringRoute,
+  SquirclesRoute: SquirclesRoute,
   TargetPracticeRoute: TargetPracticeRoute,
 }
 export const routeTree = rootRouteImport

@@ -12,6 +12,19 @@
   margin-inline: auto;
 }
 
+@utility zoom-* {
+  zoom: --value("8", "4", "2");
+  zoom: --value(integer);
+}
+
+@utility corner-* {
+  corner-shape: --value("squircle", "round", "bevel", "notch", "scoop");
+}
+
+@utility coerner-superellipse-* {
+  corner-shape: superellipse(--value(integer));
+}
+
 @utility stepper-hidden {
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {
