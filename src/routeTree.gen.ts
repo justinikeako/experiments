@@ -16,6 +16,7 @@ import { Route as ScrollyTellingRouteImport } from './routes/scrolly-telling'
 import { Route as MenuRouteImport } from './routes/menu'
 import { Route as IosTimeRouteImport } from './routes/ios-time'
 import { Route as ChromaticAbberationIThinkRouteImport } from './routes/chromatic-abberation-i-think'
+import { Route as BooksRouteImport } from './routes/books'
 import { Route as BlobRouteImport } from './routes/blob'
 import { Route as BiggestRouteImport } from './routes/biggest'
 import { Route as IndexRouteImport } from './routes/index'
@@ -56,6 +57,11 @@ const ChromaticAbberationIThinkRoute =
     path: '/chromatic-abberation-i-think',
     getParentRoute: () => rootRouteImport,
   } as any)
+const BooksRoute = BooksRouteImport.update({
+  id: '/books',
+  path: '/books',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BlobRoute = BlobRouteImport.update({
   id: '/blob',
   path: '/blob',
@@ -76,6 +82,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/biggest': typeof BiggestRoute
   '/blob': typeof BlobRoute
+  '/books': typeof BooksRoute
   '/chromatic-abberation-i-think': typeof ChromaticAbberationIThinkRoute
   '/ios-time': typeof IosTimeRoute
   '/menu': typeof MenuRoute
@@ -88,6 +95,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/biggest': typeof BiggestRoute
   '/blob': typeof BlobRoute
+  '/books': typeof BooksRoute
   '/chromatic-abberation-i-think': typeof ChromaticAbberationIThinkRoute
   '/ios-time': typeof IosTimeRoute
   '/menu': typeof MenuRoute
@@ -101,6 +109,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/biggest': typeof BiggestRoute
   '/blob': typeof BlobRoute
+  '/books': typeof BooksRoute
   '/chromatic-abberation-i-think': typeof ChromaticAbberationIThinkRoute
   '/ios-time': typeof IosTimeRoute
   '/menu': typeof MenuRoute
@@ -115,6 +124,7 @@ export interface FileRouteTypes {
     | '/'
     | '/biggest'
     | '/blob'
+    | '/books'
     | '/chromatic-abberation-i-think'
     | '/ios-time'
     | '/menu'
@@ -127,6 +137,7 @@ export interface FileRouteTypes {
     | '/'
     | '/biggest'
     | '/blob'
+    | '/books'
     | '/chromatic-abberation-i-think'
     | '/ios-time'
     | '/menu'
@@ -139,6 +150,7 @@ export interface FileRouteTypes {
     | '/'
     | '/biggest'
     | '/blob'
+    | '/books'
     | '/chromatic-abberation-i-think'
     | '/ios-time'
     | '/menu'
@@ -152,6 +164,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BiggestRoute: typeof BiggestRoute
   BlobRoute: typeof BlobRoute
+  BooksRoute: typeof BooksRoute
   ChromaticAbberationIThinkRoute: typeof ChromaticAbberationIThinkRoute
   IosTimeRoute: typeof IosTimeRoute
   MenuRoute: typeof MenuRoute
@@ -212,6 +225,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ChromaticAbberationIThinkRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/books': {
+      id: '/books'
+      path: '/books'
+      fullPath: '/books'
+      preLoaderRoute: typeof BooksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blob': {
       id: '/blob'
       path: '/blob'
@@ -240,6 +260,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BiggestRoute: BiggestRoute,
   BlobRoute: BlobRoute,
+  BooksRoute: BooksRoute,
   ChromaticAbberationIThinkRoute: ChromaticAbberationIThinkRoute,
   IosTimeRoute: IosTimeRoute,
   MenuRoute: MenuRoute,

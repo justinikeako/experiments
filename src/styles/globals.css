@@ -6,6 +6,8 @@
 @theme {
   --breakpoint-xs: 475px;
   --font-sans: "Inter", sans-serif;
+
+  --animate-pan-3d: pan-3d 10s linear infinite;
 }
 
 @utility container {
@@ -37,6 +39,41 @@
   }
 }
 
+@utility face-top {
+  transform: rotateX(90deg);
+  transform-origin: bottom;
+}
+
+@utility face-bottom {
+  transform: rotateX(-90deg);
+  transform-origin: top;
+}
+
+@utility face-left {
+  transform: rotateY(-90deg);
+  transform-origin: right;
+}
+
+@utility face-right {
+  transform: rotateY(90deg);
+  transform-origin: left;
+}
+
+@utility face-front {
+  transform: rotateY(0deg);
+}
+
+@utility face-back {
+  transform: rotateY(180deg);
+}
+
+@utility text-sideways {
+  text-orientation: sideways;
+}
+@utility writing-vertical-rl {
+  writing-mode: vertical-rl;
+}
+
 @utility scrollbar-hidden {
   scrollbar-width: 0;
 
@@ -51,5 +88,14 @@
   }
   to {
     opacity: 1;
+  }
+}
+
+@keyframes pan-3d {
+  from {
+    transform: rotateY(0deg) rotateZ(0deg);
+  }
+  to {
+    transform: rotateY(360deg) rotateZ(0deg);
   }
 }
