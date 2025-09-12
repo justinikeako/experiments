@@ -50,13 +50,14 @@
 }
 
 @utility face-left {
-  transform: rotateY(-90deg);
-  transform-origin: right;
+  transform: rotateY(90deg);
+  transform-origin: left;
+  /* backface-visibility: hidden; */
 }
 
 @utility face-right {
-  transform: rotateY(90deg);
-  transform-origin: left;
+  transform: rotateY(-90deg);
+  transform-origin: right;
 }
 
 @utility face-front {
@@ -82,6 +83,12 @@
   }
 }
 
+@custom-variant ios {
+  @supports (-webkit-touch-callout: none) {
+    @slot;
+  }
+}
+
 @keyframes doNothing {
   from {
     opacity: 1;
@@ -91,11 +98,22 @@
   }
 }
 
-@keyframes pan-3d {
+/* @keyframes pan-3d {
   from {
     transform: rotateY(0deg) rotateZ(0deg);
   }
   to {
     transform: rotateY(360deg) rotateZ(0deg);
+  }
+} */
+@keyframes pan-3d {
+  from {
+    transform: rotateX(0deg) rotateZ(0deg);
+  }
+  /* 50% {
+    transform: rotateX(deg) rotateZ(0deg);
+  } */
+  to {
+    transform: rotateX(360deg) rotateZ(0deg);
   }
 }
