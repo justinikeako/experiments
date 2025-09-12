@@ -1,22 +1,11 @@
 import { cn } from "#/lib/utils";
 import { createFileRoute } from "@tanstack/react-router";
-import { motion } from "motion/react";
 import { useState } from "react";
 
-export const Route = createFileRoute("/books")({
-  component: RouteComponent,
-});
+export const Route = createFileRoute("/books")({ component: RouteComponent });
 
 function RouteComponent() {
-  const [selected, _setSelected] = useState<number | null>(null);
-  const [prevSelected, setPrevSelected] = useState<number | null>(null);
-
-  function setSelected(index: number) {
-    setPrevSelected(index);
-    _setSelected(selected === index ? null : index);
-
-    console.log("click");
-  }
+  const [selected, setSelected] = useState<number | null>(null);
 
   return (
     <>
@@ -28,10 +17,7 @@ function RouteComponent() {
               key={index}
               index={index}
               selectedIndex={selected}
-              prevSelectedIndex={prevSelected}
-              onSelect={() => setSelected(index)}
-              // layout
-              // layoutId="book"
+              onSelect={() => setSelected(selected === index ? null : index)}
             />
           ))}
         </div>
@@ -43,13 +29,11 @@ function RouteComponent() {
 function Book({
   index,
   selectedIndex,
-  prevSelectedIndex,
   onSelect,
   ...props
 }: {
   index: number;
   selectedIndex: number | null;
-  prevSelectedIndex: number | null;
   onSelect: () => void;
 }) {
   return (
@@ -59,7 +43,6 @@ function Book({
       onClick={onSelect}
       data-any-selected={selectedIndex !== null || undefined}
       data-selected={index === selectedIndex || undefined}
-      data-not-prev={index === prevSelectedIndex || undefined}
       className={cn(
         "group spring-[0.2/2000] relative h-8 w-64 text-left text-white transition-transform transform-3d",
         "not-data-any-selected:hover:translate-z-4",
@@ -103,5 +86,3 @@ function Book({
     </button>
   );
 }
-
-const MotionBook = motion.create(Book);
